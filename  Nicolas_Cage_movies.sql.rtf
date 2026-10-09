@@ -1,0 +1,956 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2907
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\froman\fcharset0 Times-Roman;\f1\fnil\fcharset0 Menlo-Regular;\f2\fswiss\fcharset0 Helvetica;
+}
+{\colortbl;\red255\green255\blue255;\red25\green28\blue31;\red255\green255\blue255;\red242\green242\blue242;
+\red25\green28\blue31;\red0\green0\blue0;\red179\green179\blue179;\red246\green246\blue246;}
+{\*\expandedcolortbl;;\cssrgb\c12941\c14510\c16078;\cssrgb\c100000\c100000\c100000;\cssrgb\c96078\c96078\c96078;
+\cssrgb\c12941\c14510\c16078;\cssrgb\c0\c0\c0;\cssrgb\c75294\c75294\c75294;\cssrgb\c97255\c97255\c97255;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs36 \cf2 \cb3 \expnd0\expndtw0\kerning0
+1)Return the title and release year for every Nicolas Cage movie.\cf0 \cb1 \kerning1\expnd0\expndtw0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\pardirnatural\partightenfactor0
+\cf0 SELECT title, release_year\
+FROM nicolas_cage_movies;\
+\
+2)\cf2 \cb3 \expnd0\expndtw0\kerning0
+Return the title, genre, and release year for movies released in the 2020s\
+SELECT title, genre, release_year \
+FROM nicolas_cage_movies\
+WHERE decade = 2020;\
+\
+3)List every genre represented in the data set, without duplicates.\
+SELECT DISTINCT genre\
+FROM nicolas_cage_movies;\
+\
+4)Find action movies released in 2000 or later. Return their title, release year, and Rotten Tomatoes score, with the highest score first\
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb4 SELECT title, release_year, rotten_tomatoes_score\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\pardirnatural\partightenfactor0
+\cf2 \cb3 FROM nicolas_cage_movies\
+WHERE genre = \'91Action\'92 AND release_year >= 2000\
+ORDER BY rotten_tomatoes_score DESC;\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\pardirnatural\partightenfactor0
+
+\f1\fs27 \cf2 \cb4 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\pardirnatural\partightenfactor0
+
+\f0\fs36 \cf2 \cb3 5)\cf5 \cb3 \outl0\strokewidth0 \strokec5 Find movies released in either 1983 or 1984. Return the title, release year, and genre, ordered by release year and then title.\
+SELECT title, release_year, genre\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\pardirnatural\partightenfactor0
+\cf2 \cb3 \outl0\strokewidth0 FROM nicolas_cage_movies\
+WHERE release_year = 1983 OR release_year = 1984\
+ORDER BY release_year, title;\
+\
+6)\cf5 \cb3 \outl0\strokewidth0 \strokec5 Return every movie that is not a Comedy. Show the title, genre, and Rotten Tomatoes score, with the highest score first.\
+SELECT title, genre, rotten_tomatoes_score\
+\cf2 \cb3 \outl0\strokewidth0 FROM nicolas_cage_movies\
+WHERE NOT genre = \'91Comedy\'92\
+ORDER BY rotten_tomatoes_score DESC;\
+\
+7)\cf5 \cb3 \outl0\strokewidth0 \strokec5 Find movies that are either Action or Adventure and were released in the 2000s. Return the title, genre, and release year, ordered from newest to oldest.\
+\cf2 \cb3 \outl0\strokewidth0 SELECT title, genre, release_year \
+\cf2 FROM nicolas_cage_movies\
+WHERE genre = ('Action' OR 'Adventure') AND decade = 2000\
+ORDER BY release_year DESC;\
+\
+8)\cf5 \cb3 \outl0\strokewidth0 \strokec5 Find movies with a Rotten Tomatoes score of 90 or higher and a budget below $20 million. Return the title, budget, and score, sorted by score from highest to lowest.\
+SELECT title, budget_millions, rotten_tomatoes_score\
+FROM nicolas_cage_movies\
+WHERE rotten_tomatoes_score >= 90 AND budget_millions < 20\
+ORDER BY rotten_tomatoes_score DESC;\
+\
+9)List the movies that were not nominated for Best Picture or a lead acting Oscar. Return the title, release year, and genre, ordered by release year.\
+SELECT title, release_year, genre\
+\cf2 \cb3 \outl0\strokewidth0 FROM nicolas_cage_movies\
+WHERE is_best_picture_or_lead_oscar_nominated = False\
+ORDER BY release_year;\
+\
+10)\cf5 \cb3 \outl0\strokewidth0 \strokec5 Find movies released in 2010 or later that are not Action movies and either have a Rotten Tomatoes score of at least 80 or made more than $100 million at the box office. Return the title, release year, genre, score, and box office, ordered by box office from highest to lowest.\
+SELECT title, release_year, genre, r\cf2 \cb3 \outl0\strokewidth0 otten_tomatoes_score, box_office_millions\
+\cf2 FROM nicolas_cage_movies\
+WHERE release_year > 2010 AND NOT genre = \'91Action\'92 AND (rotten_tomatoes_score >=80 OR box_office_millions > 100);\
+\
+\ul MORE QUESTIONS:-\
+ORDER BY\
+\
+\ulnone 11)List all movies from newest to oldest\
+SELECT  t\cf2 itle, release_year\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\pardirnatural\partightenfactor0
+\cf2 FROM nicolas_cage_movies\
+ORDER BY release_year DESC;\
+\
+12)11)List all movies from oldest to newest \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\pardirnatural\partightenfactor0
+\cf2 SELECT  title, release_year\
+FROM nicolas_cage_movies\
+ORDER BY release_year;\
+\
+13)List movies from highest Rotten Tomatoes score to lowest\
+SELECT title,  \cf2 rotten_tomatoes_score\
+\cf2 FROM nicolas_cage_movies\
+ORDER BY rotten_tomatoes_score DESC;\
+\
+14)List movies from highest box office to lowest\
+SELECT title, box_office_millions\
+FROM nicolas_cage_movies\
+ORDER BY box_office_millions DESC;\
+\
+15)List movies from lowest budget to highest\
+SELECT title, budget_millions\
+FROM nicolas_cage_movies\
+ORDER BY budget_millions ;\
+\
+####When I rank data with ORDER BY , I turn raw data into a story.\
+I can instantly see top/bottom performers , trends and outliers.\
+With order by We can spot  , when he was active in the 90s or 2020s.\
+Rotten tomatoes score tells quality does not always equal money.####\
+\
+\ul DISTINCT\
+\ulnone 16)What different movie genres are in the dataset?\
+SELECT  DISTINCT genre\
+FROM nicolas_cage_movies;\
+\
+17)What different directors are represented?\
+SELECT DISTINCT director\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\pardirnatural\partightenfactor0
+\cf2 FROM nicolas_cage_movies;\
+\
+18)What decades are represented?\
+SELECT DISTINCT decade\
+FROM nicolas_cage_movies;\
+\
+19)Compare genre, director, and decade in which Nicolas cage acted?\
+SELECT DISTINCT genre, director, decade\
+FROM nicolas_cage_movies;\
+\
+####DISTINCT is how I find how many different categories exist.\
+DISTINCT tells me the cardinality or unique values.\
+ORDER BY gives the ranking.\
+The above question answers the genre , he acted with different directors\
+during the same or different decades. It gives me unique combinations.\
+\
+\ul FURTHER QUESTIONS ON THE DATASET:-\
+\ulnone 20)Which movies had a box office greater than their  budget?\
+SELECT title, budget_millions, box_office_millions\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\pardirnatural\partightenfactor0
+\cf2 FROM nicolas_cage_movies\
+WHERE box_office_millions > budget_millions;\
+# This answers movies with higher profit.\
+\
+21)Which movie had the highest budget?\
+SELECT title, budget_millions, genre\
+FROM nicolas_cage_movies\
+ORDER BY genre, budget_millions DESC\
+LIMIT 1;\
+#The genre being Action, adventure, comedy, crime, drama, fantasy, horror, romance, scifi,  thriller, war.His movie Ghost Rider has the highest budget movie from the dataset.\
+\
+22)Which movie has the highest box office?\
+SELECT title, box_office_millions, genre\
+FROM nicolas_cage_movies\
+ORDER BY genre, box_office_millions DESC\
+LIMIT 1;\
+#In box office the genre being action, adventure, animation, Comedy, crime, drama, fantasy, horror, Romance, sci-fi, thriller, war.The highest box office movie is The Rock from the dataset.\
+\
+23)Which movie had a highest rotten tomato score?\
+SELECT title, genre, rotten_tomatoes_score\
+FROM nicolas_cage_movies\
+ORDER BY rotten_tomatoes_score DESC\
+LIMIT 1;\
+#Bangkok Dangerous, action , 8 - low\
+Spider Man - into the spider verse , animation , 98 - high \
+\
+24)Which movies had a budget below $5 million but box office above $20 million?\
+SELECT title, genre\
+FROM nicolas_cage_movies\
+WHERE budget_millions < 5 AND box_office_millions > 20;\
+#Fastimes at ridgemont high (Comedy) , Leaving Las Vegas (Drama) meets the above criteria of high return movies.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\pardirnatural\partightenfactor0
+\cf2 25)Which movies received best picture or Lead Oscar nomination?\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\pardirnatural\partightenfactor0
+\cf2 SELECT title\
+FROM nicolas_cage_movies\
+WHERE is_best_picture_or_lead_oscar_nominated = TRUE\
+LIMIT 1;\
+#Leaving Las Vegas from the dataset.\
+\
+26)Which movie does not received best picture or Lead Oscar nomination?\
+SELECT title\
+FROM nicolas_cage_movies\
+WHERE is_best_picture_or_lead_oscar_nominated = FALSE\
+LIMIT 1;\
+# 
+\f2\fs26\fsmilli13333 \cf0 \cb1 \outl0\strokewidth0 \strokec6 Fast Times at Ridgemont High from the dataset\
+\
+27)Which nominated movies had a rotten tomatoes score above 80?\
+
+\f0\fs36 \cf2 \cb3 \outl0\strokewidth0 SELECT title\
+FROM nicolas_cage_movies\
+WHERE is_best_picture_or_lead_oscar_nominated = TRUE AND rotten_tomatoes_scores > 80\
+LIMIT 3;\
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1806\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f2\fs20 \cf0 \cb1 \outl0\strokewidth0 \strokec6 Leaving Las Vegas\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clcbpat8 \clwWidth1806\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Adaptation\cell \lastrow\row
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\pardirnatural\partightenfactor0
+
+\f0\fs36 \cf2 \cb3 \outl0\strokewidth0 \
+28)Which nominated movies had a box office greater than $50 million?\
+SELECT title\
+FROM nicolas_cage_movies\
+WHERE is_best_picture_or_lead_oscar_nominated = TRUE AND box_office_millions  > 50\
+LIMIT 1;\
+# None from the dataset\
+\
+29)Which genre contains movies with the highest rotten tomato scores?\
+SELECT title, genre, rotten_tomatoes_score\
+FROM nicolas_cage_movies\
+ORDER BY rotten_tomatoes_score DESC\
+LIMIT 10;\
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth3139\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth1005\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth2161\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f2\fs20 \cf0 \cb1 \outl0\strokewidth0 \strokec6 title\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 genre\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 rotten_tomatoes_score\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth3139\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth1005\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth2161\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Spider-Man: Into the Spider-Verse\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Animation\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 97\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clcbpat8 \clwWidth3139\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx2880
+\clvertalc \clcbpat8 \clwWidth1005\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx5760
+\clvertalc \clcbpat8 \clwWidth2161\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Pig\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Drama\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 96\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth3139\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth1005\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth2161\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Leaving Las Vegas\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Drama\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 94\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clcbpat8 \clwWidth3139\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx2880
+\clvertalc \clcbpat8 \clwWidth1005\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx5760
+\clvertalc \clcbpat8 \clwWidth2161\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Raising Arizona\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Comedy\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 94\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth3139\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth1005\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth2161\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Moonstruck\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Romance\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 94\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clcbpat8 \clwWidth3139\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx2880
+\clvertalc \clcbpat8 \clwWidth1005\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx5760
+\clvertalc \clcbpat8 \clwWidth2161\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Face/Off\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Action\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 92\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth3139\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth1005\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth2161\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Mandy\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Horror\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 91\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clcbpat8 \clwWidth3139\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx2880
+\clvertalc \clcbpat8 \clwWidth1005\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx5760
+\clvertalc \clcbpat8 \clwWidth2161\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Adaptation\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Comedy\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 91\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth3139\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth1005\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth2161\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Birdy\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Drama\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 89\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clcbpat8 \clwWidth3139\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx2880
+\clvertalc \clcbpat8 \clwWidth1005\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx5760
+\clvertalc \clcbpat8 \clwWidth2161\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Dream Scenario\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Comedy\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 89\cell \lastrow\row
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\pardirnatural\partightenfactor0
+
+\f0\fs36 \cf2 \cb3 \outl0\strokewidth0 \
+OR\
+SELECT genre, AVG(rotten_tomatoes_score) AS avg_score\
+FROM nicolas_cage_movies\
+GROUP BY genre\
+ORDER BY avg_score DESC\
+LIMIT 10;\
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1005\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1038\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f2\fs20 \cf0 \cb1 \outl0\strokewidth0 \strokec6 genre\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 avg_score\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1005\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1038\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Animation\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 83.5000\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clcbpat8 \clwWidth1005\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clcbpat8 \clwWidth1038\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Drama\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 77.3333\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1005\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1038\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Comedy\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 74.7000\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clcbpat8 \clwWidth1005\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clcbpat8 \clwWidth1038\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Crime\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 72.3333\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1005\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1038\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Horror\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 65.8000\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clcbpat8 \clwWidth1005\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clcbpat8 \clwWidth1038\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Romance\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 59.8000\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1005\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1038\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Action\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 47.4444\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clcbpat8 \clwWidth1005\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clcbpat8 \clwWidth1038\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Thriller\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 47.0000\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1005\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1038\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Sci-Fi\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 45.6667\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clcbpat8 \clwWidth1005\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clcbpat8 \clwWidth1038\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 War\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 41.0000\cell \lastrow\row
+\pard\pardeftab720\partightenfactor0
+
+\fs24 \cf0 #Nicolas cage has the highest critical success in animation and drama , while \
+Action and sci-fi movies , though higher budget has lower average rotten tomato scores.\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\pardirnatural\partightenfactor0
+
+\f0\fs36 \cf2 \cb3 \outl0\strokewidth0 \
+30)Which movies released in the 1990\'92s had a rotten tomatoes core above 80?\
+SELECT title, genre, release_year\
+FROM nicolas_cage_movies\
+WHERE decade = 1990
+\f2\fs20 \cf0 \cb1 \
+
+\f0\fs36 \cf2 \cb3  AND rotten_tomatoes_score > 80;\
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth726\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth726\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\cell
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f2\fs20 \cf0 \cb1 \outl0\strokewidth0 \strokec6 \cell \lastrow\row
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\pardirnatural\partightenfactor0
+
+\f0\fs36 \cf2 \cb3 \outl0\strokewidth0 #When he was introduced he was best known for Thriller, drama and action\
+\
+31)Which movies made profit?\
+SELECT title, budget_millions, box_office_millions,\
+(budget_millions - box_office_millions) AS profit_millions\
+FROM nicolas_cage_movies\
+WHERE  box_office_millions >  budget_millions;\
+#35 out of 58 movies from the dataset has given profit.\
+\
+32)ROI calculation\
+SELECT title, (box_office_millions - budget_millions) /  budget_millions * 100  AS roi_percent\
+FROM nicolas_cage_movies\
+ORDER BY roi_percent DESC;\
+\
+33)How many movies per decade?\
+SELECT decade, COUNT(*)  AS total_movies\
+FROM nicolas_cage_movies\
+GROUP BY decade\
+ORDER BY decade;\
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth771\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1238\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+
+\f2\fs20 \cf0 \cb1 \outl0\strokewidth0 \strokec6 decade\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 total_movies\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth771\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1238\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 1980\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 10\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clcbpat8 \clwWidth771\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clcbpat8 \clwWidth1238\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 1990\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 14\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth771\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1238\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 2000\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 17\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clcbpat8 \clwWidth771\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clcbpat8 \clwWidth1238\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 2010\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 12\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth771\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1238\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 2020\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 5\cell \lastrow\row
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\pardirnatural\partightenfactor0
+
+\f0\fs36 \cf2 \cb3 \outl0\strokewidth0 \
+34)Average Rotten Tomatoes Score per Genre\
+SELECT genre, AVG(rotten_tomatoes_score) AS avg_score, COUNT(*) AS movies\
+FROM nicolas_cage_movies\
+GROUP BY genre\
+ORDER BY avg_score DESC;\
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth1038\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth749\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f2\fs20 \cf0 \cb1 \outl0\strokewidth0 \strokec6 genre\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 avg_score\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 movies\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth1038\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth749\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Animation\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 83.5000\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 2\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clcbpat8 \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx2880
+\clvertalc \clcbpat8 \clwWidth1038\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx5760
+\clvertalc \clcbpat8 \clwWidth749\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Drama\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 77.3333\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 9\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth1038\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth749\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Comedy\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 74.7000\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 10\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clcbpat8 \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx2880
+\clvertalc \clcbpat8 \clwWidth1038\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx5760
+\clvertalc \clcbpat8 \clwWidth749\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Crime\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 72.3333\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 6\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth1038\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth749\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Horror\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 65.8000\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 5\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clcbpat8 \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx2880
+\clvertalc \clcbpat8 \clwWidth1038\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx5760
+\clvertalc \clcbpat8 \clwWidth749\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Romance\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 59.8000\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 5\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth1038\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth749\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Action\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 47.4444\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 9\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clcbpat8 \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx2880
+\clvertalc \clcbpat8 \clwWidth1038\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx5760
+\clvertalc \clcbpat8 \clwWidth749\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Thriller\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 47.0000\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 4\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth1038\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth749\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Sci-Fi\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 45.6667\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 3\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clcbpat8 \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx2880
+\clvertalc \clcbpat8 \clwWidth1038\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx5760
+\clvertalc \clcbpat8 \clwWidth749\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 War\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 41.0000\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 1\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth1038\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth749\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Adventure\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 39.5000\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 2\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clcbpat8 \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx2880
+\clvertalc \clcbpat8 \clwWidth1038\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx5760
+\clvertalc \clcbpat8 \clwWidth749\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Fantasy\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 25.5000\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 2\cell \lastrow\row
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\pardirnatural\partightenfactor0
+
+\f0\fs36 \cf2 \cb3 \outl0\strokewidth0 #Animation scored the highest , followed by Drama and Comedy\
+\
+35)Total box office per director\
+SELECT director, SUM(box_office_millions) AS total_box_office\
+FROM nicolas_cage_movies\
+GROUP BY director\
+ORDER BY total_box_office DESC\
+LIMIT 10;\
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth2050\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1516\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f2\fs20 \cf0 \cb1 \outl0\strokewidth0 \strokec6 director\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 total_box_office\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth2050\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1516\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Jon Turteltaub\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 1020.2\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clcbpat8 \clwWidth2050\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clcbpat8 \clwWidth1516\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Kirk DeMicco\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 587.2\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth2050\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1516\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Bob Persichetti\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 384.3\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clcbpat8 \clwWidth2050\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clcbpat8 \clwWidth1516\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Michael Bay\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 335.1\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth2050\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1516\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Dominic Sena\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 328.8\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clcbpat8 \clwWidth2050\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clcbpat8 \clwWidth1516\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 John Woo\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 323.3\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth2050\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1516\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Mark Steven Johnson\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 228.7\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clcbpat8 \clwWidth2050\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clcbpat8 \clwWidth1516\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Simon West\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 224.0\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth2050\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1516\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Brad Silberling\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 198.7\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clcbpat8 \clwWidth2050\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clcbpat8 \clwWidth1516\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Alex Proyas\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 183.0\cell \lastrow\row
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\pardirnatural\partightenfactor0
+
+\f0\fs36 \cf2 \cb3 \outl0\strokewidth0 \
+36)Which decade has the highest average budget?\
+SELECT decade, AVG(budget_millions) AS avg_budget\
+FROM nicolas_cage_movies\
+GROUP BY decade;\
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth771\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1161\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+
+\f2\fs20 \cf0 \cb1 \outl0\strokewidth0 \strokec6 decade\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 avg_budget\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth771\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1161\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 1980\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 13.29000\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clcbpat8 \clwWidth771\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clcbpat8 \clwWidth1161\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 1990\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 37.82857\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth771\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1161\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 2000\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 61.64706\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clcbpat8 \clwWidth771\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clcbpat8 \clwWidth1161\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 2010\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 47.94167\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth771\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1161\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 2020\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 23.60000\cell \lastrow\row
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\pardirnatural\partightenfactor0
+
+\f0\fs36 \cf2 \cb3 \outl0\strokewidth0 #Which says he was in his peak of his career in 2000s.\
+\
+37)Best genre by box office\
+SELECT genre, AVG(box_office_millions) AS avg_box_office\
+FROM nicolas_cage_movies\
+GROUP BY genre\
+ORDER BY avg_box_office DESC;\
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1461\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f2\fs20 \cf0 \cb1 \outl0\strokewidth0 \strokec6 genre\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 avg_box_office\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1461\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Animation\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 485.75000\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clcbpat8 \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clcbpat8 \clwWidth1461\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Adventure\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 402.45000\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1461\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Action\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 175.51111\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clcbpat8 \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clcbpat8 \clwWidth1461\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Fantasy\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 153.45000\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1461\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Romance\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 96.52000\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clcbpat8 \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clcbpat8 \clwWidth1461\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Sci-Fi\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 87.00000\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1461\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 War\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 77.60000\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clcbpat8 \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clcbpat8 \clwWidth1461\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Thriller\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 50.75000\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1461\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Crime\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 34.36667\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clcbpat8 \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clcbpat8 \clwWidth1461\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Horror\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 33.84000\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1461\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Comedy\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 25.95000\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clcbpat8 \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx4320
+\clvertalc \clcbpat8 \clwWidth1461\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf7 \clbrdrl\brdrs\brdrw20\brdrcf7 \clbrdrb\brdrs\brdrw20\brdrcf7 \clbrdrr\brdrs\brdrw20\brdrcf7 \clpadt48 \clpadl48 \clpadb48 \clpadr48 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Drama\cell 
+\pard\intbl\itap1\pardeftab720\qr\partightenfactor0
+\cf0 17.86667\cell \lastrow\row
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\pardirnatural\partightenfactor0
+
+\f0\fs36 \cf2 \cb3 \outl0\strokewidth0 #This concludes animation and adventure earned him the most box office hit making him popular along with the whole crew who worked with him.\
+}
